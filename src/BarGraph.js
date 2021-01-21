@@ -1,12 +1,14 @@
 import React from "react";
-import { ResponsiveBarCanvas } from "@nivo/bar";
+// import { ResponsiveBarCanvas } from "@nivo/bar";
+import { Bar } from "@nivo/bar";
 import { generateCountriesData } from "@nivo/generators";
 
 const keys = ["hot dogs", "burgers", "sandwich", "kebab", "fries", "donut"];
 
 export default function BarGraph({ forwardRef }) {
   return (
-    <ResponsiveBarCanvas
+    <Bar
+      className="barGraph"
       ref={forwardRef}
       width={900}
       height={500}
@@ -22,6 +24,32 @@ export default function BarGraph({ forwardRef }) {
       groupMode="grouped"
       enableGridY={false}
       enableGridX={true}
+      legends={[
+        {
+          anchor: "bottom-right",
+          direction: "column",
+          justify: false,
+          translateX: 100,
+          translateY: 0,
+          itemsSpacing: 0,
+          itemDirection: "left-to-right",
+          itemWidth: 80,
+          itemHeight: 20,
+          itemOpacity: 0.75,
+          symbolSize: 12,
+          symbolShape: "circle",
+          symbolBorderColor: "rgba(0, 0, 0, .5)",
+          effects: [
+            {
+              on: "hover",
+              style: {
+                itemBackground: "rgba(0, 0, 0, .03)",
+                itemOpacity: 1
+              }
+            }
+          ]
+        }
+      ]}
     />
   );
 }
