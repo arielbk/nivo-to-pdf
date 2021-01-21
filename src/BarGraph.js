@@ -19,6 +19,7 @@ export default function BarGraph({ forwardRef }) {
       labelSkipWidth={16}
       labelSkipHeight={16}
       layout="horizontal"
+      groupMode="grouped"
       enableGridY={false}
       enableGridX={true}
     />
