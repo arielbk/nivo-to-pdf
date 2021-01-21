@@ -1,13 +1,12 @@
 import React from "react";
-import { Bar } from "@nivo/bar";
+import { ResponsiveBarCanvas } from "@nivo/bar";
 import { generateCountriesData } from "@nivo/generators";
 
 const keys = ["hot dogs", "burgers", "sandwich", "kebab", "fries", "donut"];
 
 export default function BarGraph({ forwardRef }) {
-  console.log("bar renders");
   return (
-    <Bar
+    <ResponsiveBarCanvas
       ref={forwardRef}
       width={900}
       height={500}
