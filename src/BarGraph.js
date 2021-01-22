@@ -3,7 +3,7 @@ import React from "react";
 import { Bar } from "@nivo/bar";
 import { generateCountriesData } from "@nivo/generators";
 
-const keys = ["hot dogs", "burgers", "sandwich", "kebab", "fries", "donut"];
+const keys = ["small", "medium", "large", "x large"];
 
 export default function BarGraph({ forwardRef }) {
   return (
@@ -21,7 +21,7 @@ export default function BarGraph({ forwardRef }) {
       labelSkipWidth={16}
       labelSkipHeight={16}
       layout="horizontal"
-      groupMode="grouped"
+      // groupMode="grouped"
       enableGridY={false}
       enableGridX={true}
       legends={[
@@ -29,7 +29,7 @@ export default function BarGraph({ forwardRef }) {
           anchor: "bottom-right",
           direction: "column",
           justify: false,
-          translateX: 100,
+          translateX: 80,
           translateY: 0,
           itemsSpacing: 0,
           itemDirection: "left-to-right",
