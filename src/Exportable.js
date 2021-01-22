@@ -1,13 +1,15 @@
 import React, { useRef } from "react";
-import { download, canvasToPdf, svgToCanvas } from "./utils";
+import { canvasToPdf, svgToPng } from "./utils";
 import BarGraph from "./BarGraph";
+import download from "downloadjs";
 
 export default function Exportable() {
   const containerRef = useRef();
 
   // const handleExport = () => canvasToPdf(containerRef.current);
-  const handleExport = () => {
-    svgToCanvas(containerRef.current.querySelector("svg"));
+  const handleExport = async () => {
+    const png = svgToPng(containerRef.current);
+    download(png);
   };
 
   // console.log(containerRef.current);

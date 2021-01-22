@@ -11,23 +11,33 @@ import download from "downloadjs";
 //   link.remove();
 // }
 
-export function svgToCanvas(svg) {
+export async function svgToPng(container) {
+  const svg = container.querySelector("svg");
   const { width, height } = svg.getBBox();
   const canvas = document.createElement("canvas");
   canvas.width = width;
   canvas.height = height;
   const ctx = canvas.getContext("2d");
+
   const img = new Image();
   const svgBlob = new Blob([svg.outerHTML], {
     type: "image/svg+xml;charset=utf-8"
   });
-  const svgUrl = window.URL.createObjectURL(svgBlob);
+  const URL = window.URL || window.webkitURL || window;
+  const svgUrl = URL.createObjectURL(svgBlob);
   img.src = svgUrl;
-  img.onload = function () {
-    ctx.drawImage(img, 0, 0);
-    window.URL.revokeObjectURL();
-  };
-  return canvas;
+
+  img.addEventListener("load", () => {
+    ctx.drawImage(img, 0, 0, width, height);
+    const png = canvas.toDataURL();
+    download(png);
+    URL.revokeObjectURL(svgUrl);
+    return png;
+  });
+  img.addEventListener("error", (err) => {
+    URL.revokeObjectURL(svgUrl);
+    throw new Error(err);
+  });
 }
 
 // export async function canvasToPdf(containerRef) {
